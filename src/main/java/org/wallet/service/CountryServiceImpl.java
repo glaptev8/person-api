@@ -4,7 +4,6 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.reactive.TransactionalOperator;
-import org.springframework.transaction.support.TransactionOperations;
 import org.wallet.entity.Country;
 import org.wallet.entity.UserCountry;
 import org.wallet.repository.CountryRepository;
@@ -31,5 +30,10 @@ public class CountryServiceImpl implements CountryService {
                                                               .build())
           .then(Mono.just(savedCountry))))
     );
+  }
+
+  @Override
+  public Mono<Country> getByName(String name) {
+    return countryRepository.findByName(name);
   }
 }

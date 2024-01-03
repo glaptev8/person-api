@@ -37,31 +37,35 @@ public class UserServiceImpl implements UserService {
                        .flatMap(user -> {
                          userSave.getProfile().setUserUid(user.getUid());
                          return profileService.save(userSave.getProfile())
-                           .flatMap(profile -> countryService.save(userSave.getCountry(), user.getUid())
-                             .flatMap(country -> {
-                                        userSave.getAddress().setCountryId(country.getId());
-                                        return addressService.save(userSave.getAddress())
-                                          .flatMap(address -> switch (user.getProfileType()) {
-                                            case ADMIN -> {
-                                              userSave.getAdmin().setProfileUid(profile.getUid());
-                                              yield adminService.save(userSave.getAdmin());
-                                            }
-                                            case INDIVIDUAL -> {
-                                              userSave.getIndividual().setProfileUid(profile.getUid());
-                                              userSave.getIndividual().setAddressId(address.getId());
-                                              yield individualService.save(userSave.getIndividual());
-                                            }
-                                            case MERCHANT -> {
-                                              userSave.getMerchant().setProfileUid(profile.getUid());
-                                              userSave.getMerchant().setAddressId(address.getId());
-                                              yield merchantService.save(userSave.getMerchant());
-                                            }
-                                            case AUTHORITY -> authorityService.save(userSave.getAuthority());
-                                          });
-                                      }
+                           .flatMap(profile ->
+                                      countryService.getByName(userSave.getCountry().getName())
+                                        .switchIfEmpty(countryService.save(userSave.getCountry(), user.getUid()))
+                                        .flatMap(country -> {
+                                                   userSave.getAddress().setCountryId(country.getId());
+                                                   return addressService.save(userSave.getAddress())
+                                                     .flatMap(address -> switch (user.getProfileType()) {
+                                                       case ADMIN -> {
+                                                         userSave.getAdmin().setProfileUid(profile.getUid());
+                                                         yield adminService.save(userSave.getAdmin());
+                                                       }
+                                                       case INDIVIDUAL -> {
+                                                         userSave.getIndividual().setProfileUid(profile.getUid());
+                                                         userSave.getIndividual().setAddressId(address.getId());
+                                                         yield individualService.save(userSave.getIndividual());
+                                                       }
+                                                       case MERCHANT -> {
+                                                         userSave.getMerchant().setProfileUid(profile.getUid());
+                                                         userSave.getMerchant().setAddressId(address.getId());
+                                                         yield merchantService.save(userSave.getMerchant());
+                                                       }
+                                                       case AUTHORITY -> authorityService.save(userSave.getAuthority());
+                                                     });
+                                                 }
+                                        )
+                                        .then(Mono.just(user))
 
-                             )
-                             .then(Mono.just(user)));
+
+                           );
                        })
         ));
   }

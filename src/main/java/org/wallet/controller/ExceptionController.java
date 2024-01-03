@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @ControllerAdvice
-public class ControllerConfig {
+public class ExceptionController {
   @ExceptionHandler
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   public void handle(Exception e) throws Exception {
