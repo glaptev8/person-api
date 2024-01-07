@@ -10,7 +10,7 @@ jacoco {
     toolVersion = '0.8.11'
 }
 
-group = 'org.wallet-api'
+group = 'org.person-api'
 version = '1.0-SNAPSHOT'
 
 repositories {
