@@ -27,6 +27,7 @@ public class User {
   private UUID lastProfileUid;
   private String language;
   private boolean emailVerified;
+  @Column(value = "prefer_mobile_2fa")
   private String preferMobile2fa;
   private ProfileType profileType;
   private boolean isPasswordSet;
