@@ -31,6 +31,12 @@ public class UserController {
       .map(mapper::userMapper);
   }
 
+  @PostMapping("/userInfo")
+  public Mono<UserDto> saveUser(@RequestBody String email) {
+    return userService.userInfo(email)
+      .map(mapper::userMapper);
+  }
+
   @PostMapping("/verify")
   public Mono<VerificationStatusDto> verifyUser(@RequestBody VerificationStatus verificationStatus) {
     return verificationStatusService

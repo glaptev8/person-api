@@ -68,4 +68,9 @@ public class UserServiceImpl implements UserService {
           })
         ));
   }
+
+  @Override
+  public Mono<User> userInfo(String email) {
+    return userRepository.findByEmail(email);
+  }
 }
