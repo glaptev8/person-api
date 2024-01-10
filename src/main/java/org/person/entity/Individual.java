@@ -1,10 +1,11 @@
 package org.person.entity;
 
 import lombok.Data;
+
+import org.leantech.person.dto.GenderType;
+import org.leantech.person.dto.IndividualStatus;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
-import org.person.dto.GenderType;
-import org.person.dto.IndividualStatus;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

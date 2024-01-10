@@ -1,9 +1,10 @@
 package org.person.entity;
 
 import lombok.Data;
+
+import org.leantech.person.dto.ProfileType;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
-import org.person.dto.ProfileType;
 
 import java.time.LocalDateTime;
 

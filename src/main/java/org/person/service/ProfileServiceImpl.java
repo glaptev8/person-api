@@ -2,9 +2,9 @@ package org.person.service;
 
 import java.util.ArrayList;
 
+import org.leantech.person.dto.ProfileType;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-import org.person.dto.ProfileType;
 import org.person.entity.Profile;
 import org.person.entity.ProfileHistory;
 import org.person.repository.ProfileHistoryRepository;

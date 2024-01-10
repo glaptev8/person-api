@@ -1,10 +1,11 @@
 package org.person.entity;
 
 import lombok.Data;
+
+import org.leantech.person.dto.OperationsMemberRole;
+import org.leantech.person.dto.OperationsMemberStatus;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
-import org.person.dto.OperationsMemberRole;
-import org.person.dto.OperationsMemberStatus;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

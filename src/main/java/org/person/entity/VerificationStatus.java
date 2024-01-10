@@ -1,10 +1,11 @@
 package org.person.entity;
 
 import lombok.Data;
+
+import org.leantech.person.dto.ProfileType;
+import org.leantech.person.dto.VerificationStatusStatus;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
-import org.person.dto.ProfileType;
-import org.person.dto.VerificationStatusStatus;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

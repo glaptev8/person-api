@@ -1,12 +1,13 @@
 package org.person.entity;
 
 import lombok.Data;
+
+import org.leantech.person.dto.DataType;
+import org.leantech.person.dto.ProfileType;
+import org.leantech.person.dto.ValidationRules;
+import org.leantech.person.dto.ValidationType;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
-import org.person.dto.DataType;
-import org.person.dto.ProfileType;
-import org.person.dto.ValidationRules;
-import org.person.dto.ValidationType;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
