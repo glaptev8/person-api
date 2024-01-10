@@ -5,6 +5,6 @@ COPY build/libs/wallet-api-1.0-SNAPSHOT.jar /person/build/
 
 WORKDIR /person/build
 
-EXPOSE 8082
+EXPOSE 8080
 
 ENTRYPOINT java -jar wallet-api-1.0-SNAPSHOT.jar
