@@ -12,6 +12,9 @@ spring:
     user: postgres
     password: postgres
 
+kafka:
+  host: "localhost:9093"
+
 server:
   port: 8082
 

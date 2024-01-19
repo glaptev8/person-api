@@ -1,5 +1,10 @@
 package org.person.service;
 
+import java.time.LocalDateTime;
+
+import org.leantech.notification.NotificationDto;
+import org.leantech.notification.ObjectTypeEnum;
+import org.leantech.notification.TriggerCodeEnum;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.reactive.TransactionalOperator;
 import org.person.dto.UserSave;
@@ -22,9 +27,27 @@ public class UserServiceImpl implements UserService {
   private final IndividualService individualService;
   private final AuthorityService authorityService;
   private final MerchantService merchantService;
+  private final RegisterNotificationProducer registerNotificationProducer;
+  private final MessageSourceService messageSourceService;
 
   @Override
   public Mono<User> save(UserSave userSave) {
+    return saveUser(userSave)
+      .map(user -> {
+        registerNotificationProducer.sendEvent(NotificationDto.builder()
+                                                 .objectId(user.getEmail())
+                                                 .objectType(ObjectTypeEnum.EMAIL)
+                                                 .subject(messageSourceService.getMessage("notification.register.subject"))
+                                                 .message(messageSourceService.getMessage("notification.register.message"))
+                                                 .triggerCode(TriggerCodeEnum.INDIVIDUAL_REGISTERED_101)
+                                                 .userUid(user.getUid().toString())
+                                                 .expirationDate(LocalDateTime.now().plusMonths(2L))
+                                                 .build());
+        return user;
+      });
+  }
+
+  private Mono<User> saveUser(UserSave userSave) {
     return transactionalOperator
       .transactional(
         Mono.defer(() -> userRepository.existsByEmail(userSave.getUser().getEmail())

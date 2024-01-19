@@ -12,6 +12,8 @@ spring:
     user: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
 
+kafka:
+  host: ${KAFKA_HOST}
 
 logging:
   level:
