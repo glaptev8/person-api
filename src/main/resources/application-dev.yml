@@ -12,8 +12,15 @@ spring:
     user: postgres
     password: postgres
 
-kafka:
-  host: "localhost:9093"
+notification:
+  kafka:
+    host: "localhost:9093"
+
+integration:
+  notification-property:
+    base-url: ${NOTIFICATION_URL}
+    update-status: "update"
+    users-notification: ""
 
 server:
   port: 8082

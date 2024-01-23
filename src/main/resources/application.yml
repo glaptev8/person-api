@@ -12,8 +12,15 @@ spring:
     user: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
 
-kafka:
-  host: ${KAFKA_HOST}
+notification:
+  kafka:
+    host: ${KAFKA_HOST}
+
+integration:
+  notification-property:
+    base-url: ${NOTIFICATION_URL}
+    update-status: "update"
+    users-notification: ""
 
 logging:
   level:

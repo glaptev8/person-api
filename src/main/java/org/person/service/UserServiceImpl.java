@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import org.leantech.notification.NotificationDto;
 import org.leantech.notification.ObjectTypeEnum;
 import org.leantech.notification.TriggerCodeEnum;
+import org.leantech.webclient.client.notification.RegisterNotificationProducer;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.reactive.TransactionalOperator;
 import org.person.dto.UserSave;
