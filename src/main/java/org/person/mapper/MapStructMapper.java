@@ -28,6 +28,7 @@ import org.person.entity.VerificationStatus;
 public interface MapStructMapper {
    User userMapperDto(UserDto userDto);
    Profile profileMapperDto(ProfileDto profileDto);
+   ProfileDto profileMapper(Profile profile);
    Address addressMapperDto(AddressDto addressDto);
    Country countryMapperDto(CountryDto countryDto);
    Merchant merchantMapperDto(MerchantDto merchantDto);

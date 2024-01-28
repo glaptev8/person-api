@@ -1,6 +1,7 @@
 package org.person.service;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import org.leantech.person.dto.ProfileType;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,17 @@ public class ProfileServiceImpl implements ProfileService {
         .switchIfEmpty(Mono.defer(() -> profileRepository.save(profile))))
       .switchIfEmpty(Mono.error(new RuntimeException("")));
   }
+
+  @Override
+  public Mono<Profile> getProfileByUid(UUID profileUid) {
+    return profileRepository.findById(profileUid);
+  }
+
+  @Override
+  public Mono<Profile> getProfileByUserUid(UUID userUid) {
+    return profileRepository.findByUserUid(userUid);
+  }
+
   private ProfileHistory setProfileHistory(Profile newProfile, ProfileHistory profileHistory, ProfileType oldProfileType) {
     if (CollectionUtils.isEmpty(profileHistory.getChangedValues())) {
       profileHistory.setChangedValues(new ArrayList<>());
